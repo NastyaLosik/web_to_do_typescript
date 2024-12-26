@@ -1,0 +1,47 @@
+
+    .task-container {
+        max-width: 500px;
+        width: 100vw;
+        padding: 10px;
+        border-radius: 8px;
+        @include color();
+        box-sizing: border-box;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        &:active {
+            @include focus-color();
+        }
+        &-text {
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            color: #F0E3CAA3;
+            word-wrap: break-word;
+            
+            h3 {
+                font-family: "Roboto";
+                font-size: 22px;
+                font-weight: 500;
+            }
+            p{
+                font-family: "Roboto";
+                font-size: 14px;
+            }
+        }
+        .delete-button {
+            padding: 8px 12px;
+            @include color();
+            color: #A35709;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .delete-button:focus{
+            color: #FF8303;
+            @include focus-color();
+        }
+    }

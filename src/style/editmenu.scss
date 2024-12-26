@@ -1,0 +1,34 @@
+.edit-menu {
+    max-width: 500px;
+    width: 100vw;
+    height: 44px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .block-buttons{
+        width: 124px;
+        height: 36px;
+        display: flex;
+        justify-content: space-between;
+        button {
+            width: 36px;
+            height: 36px;
+            @include color();
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto';
+            font-size: 16px;
+            font-weight: 700;
+            color: #FFFFFF;
+            img {
+                width: 14px;
+                height: 14px;
+            }
+        }
+        button:focus{
+            @include focus-color();
+        }
+    }
+}

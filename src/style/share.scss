@@ -1,0 +1,44 @@
+
+.share-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #070707E3 ;
+    position: fixed;
+    inset: 0;
+
+    &-content{
+        max-width: 400px;
+        width: 100vw;
+        height: 76px;
+        background-color: #1B1A17;
+        border-radius: 8px;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+        .share-buttons{
+            max-width: 350px;
+            width: 100vw;
+            height: 48px;
+            display: flex;
+            justify-content: space-evenly;
+                        
+            button{
+                width: 48px;
+                height: 48px;
+                background-color: #23221F;
+                border-radius: 100%;
+                border: #23221F;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            button:focus{
+                background-color: #2A2926;
+            }
+        }
+    }
+}

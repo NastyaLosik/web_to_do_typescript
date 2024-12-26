@@ -1,0 +1,118 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("./Roboto-Regular.ttf");
+  }
+*{
+    margin: 0;
+}
+
+@mixin focus-color{
+    border: 1px solid #FF8303;
+    background-color: #1F1E1B;
+}
+
+@mixin color{
+    border: 1px solid #A35709;
+    background-color: #1B1A17;
+}
+@import 'delete';
+@import 'share';
+.root{
+    background-color: #1B1A17;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .App{
+        height: 500px;
+        display: flex;
+        .page{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .task-input-container {
+                max-width: 400px;
+                width: 100vw;
+                height: 70px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin-top: 20px;
+
+                .input-container {
+                    max-width: 300px;
+                    width: 100vw;
+                    height: 70px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .title-input{
+                        max-width: 300px;
+                        width: 100vw;
+                        height: 30px;
+                        font-family: "Roboto";
+                        @include color();
+                        border-radius: 4px;
+                        color: #F0E3CAA3;
+                        outline: none;
+                    }
+                    .title-input:focus{
+                        @include focus-color();
+                    }
+
+                    .about-input {
+                        max-width: 300px;
+                        width: 100vw;
+                        height: 30px;
+                        font-family: "Roboto";
+                        @include color();
+                        color: #F0E3CAA3;
+                        border-radius: 4px;
+                        outline: none;
+                    }
+                    .about-input:focus{
+                        @include focus-color();
+                    }
+                }    
+                .add-button {
+                    width: 70px;
+                    height: 70px;
+                    font-size: 50px;
+                    color: #A35709;
+                    @include color();
+                    border-radius: 4px;
+                    display: flex;
+                    cursor: pointer;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .add-button:focus{
+                    color: #FF8303;
+                    @include focus-color();
+                }
+            }
+            
+            .main-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 200px; 
+                .text-main-container {
+                    border-top: 3px solid #FF8303;
+                    border-bottom: 3px solid #FF8303;
+                    font-family: "Roboto";
+                    font-size: 24px;
+                    color: #FFFFFF;
+                }    
+            } 
+            .task-element{  
+                display: flex;
+                flex-direction: column; 
+                @import 'task';    
+                @import 'editmenu';   
+                @import 'edit';     
+            }
+        }
+    }
+}

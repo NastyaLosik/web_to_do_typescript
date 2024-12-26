@@ -1,0 +1,53 @@
+.delete-container{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #070707E3 ;
+    position: fixed;
+    inset: 0;
+    &-content{
+        max-width: 300px;
+        width: 100vw;
+        height: 150px;
+        background-color: #1B1A17;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;   
+        border-top: 3px solid #A35709;
+        span {
+            font-family: "Roboto";
+            color: #FFFFFF;
+        }
+        .delete-buttons{
+            width: 138px;
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+            .yes-button{
+                width: 64px;
+                height: 24px;
+                font-family: "Roboto";
+                @include color();
+                color: #D9D9D9;
+                cursor: pointer;
+            }
+            .yes-button:focus{
+                @include focus-color();
+            }
+            .no-button{
+                width: 64px;
+                height: 24px;
+                font-family: "Roboto";
+                @include color();
+                color: #D9D9D9;
+                cursor: pointer;
+            }
+            .no-button:focus{
+                @include focus-color();
+            }
+        }
+    }
+}

@@ -1,0 +1,380 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto-Regular.ttf");
+}
+* {
+  margin: 0;
+}
+
+.delete-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(7, 7, 7, 0.8901960784);
+  position: fixed;
+  inset: 0;
+}
+.delete-container-content {
+  max-width: 300px;
+  width: 100vw;
+  height: 150px;
+  background-color: #1B1A17;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-top: 3px solid #A35709;
+}
+.delete-container-content span {
+  font-family: "Roboto";
+  color: #FFFFFF;
+}
+.delete-container-content .delete-buttons {
+  width: 138px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.delete-container-content .delete-buttons .yes-button {
+  width: 64px;
+  height: 24px;
+  font-family: "Roboto";
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  color: #D9D9D9;
+  cursor: pointer;
+}
+.delete-container-content .delete-buttons .yes-button:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.delete-container-content .delete-buttons .no-button {
+  width: 64px;
+  height: 24px;
+  font-family: "Roboto";
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  color: #D9D9D9;
+  cursor: pointer;
+}
+.delete-container-content .delete-buttons .no-button:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+
+.share-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: rgba(7, 7, 7, 0.8901960784);
+  position: fixed;
+  inset: 0;
+}
+.share-container-content {
+  max-width: 400px;
+  width: 100vw;
+  height: 76px;
+  background-color: #1B1A17;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.share-container-content .share-buttons {
+  max-width: 350px;
+  width: 100vw;
+  height: 48px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.share-container-content .share-buttons button {
+  width: 48px;
+  height: 48px;
+  background-color: #23221F;
+  border-radius: 100%;
+  border: #23221F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.share-container-content .share-buttons button:focus {
+  background-color: #2A2926;
+}
+
+.root {
+  background-color: #1B1A17;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.root .App {
+  height: 500px;
+  display: flex;
+}
+.root .App .page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.root .App .page .task-input-container {
+  max-width: 400px;
+  width: 100vw;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.root .App .page .task-input-container .input-container {
+  max-width: 300px;
+  width: 100vw;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.root .App .page .task-input-container .input-container .title-input {
+  max-width: 300px;
+  width: 100vw;
+  height: 30px;
+  font-family: "Roboto";
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  border-radius: 4px;
+  color: rgba(240, 227, 202, 0.6392156863);
+  outline: none;
+}
+.root .App .page .task-input-container .input-container .title-input:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-input-container .input-container .about-input {
+  max-width: 300px;
+  width: 100vw;
+  height: 30px;
+  font-family: "Roboto";
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  color: rgba(240, 227, 202, 0.6392156863);
+  border-radius: 4px;
+  outline: none;
+}
+.root .App .page .task-input-container .input-container .about-input:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-input-container .add-button {
+  width: 70px;
+  height: 70px;
+  font-size: 50px;
+  color: #A35709;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  border-radius: 4px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.root .App .page .task-input-container .add-button:focus {
+  color: #FF8303;
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+.root .App .page .main-container .text-main-container {
+  border-top: 3px solid #FF8303;
+  border-bottom: 3px solid #FF8303;
+  font-family: "Roboto";
+  font-size: 24px;
+  color: #FFFFFF;
+}
+.root .App .page .task-element {
+  display: flex;
+  flex-direction: column;
+}
+.root .App .page .task-element .task-container {
+  max-width: 500px;
+  width: 100vw;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  box-sizing: border-box;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.root .App .page .task-element .task-container:active {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .task-container-text {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  color: rgba(240, 227, 202, 0.6392156863);
+  word-wrap: break-word;
+}
+.root .App .page .task-element .task-container-text h3 {
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 500;
+}
+.root .App .page .task-element .task-container-text p {
+  font-family: "Roboto";
+  font-size: 14px;
+}
+.root .App .page .task-element .task-container .delete-button {
+  padding: 8px 12px;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  color: #A35709;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+.root .App .page .task-element .task-container .delete-button:focus {
+  color: #FF8303;
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .edit-menu {
+  max-width: 500px;
+  width: 100vw;
+  height: 44px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.root .App .page .task-element .edit-menu .block-buttons {
+  width: 124px;
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+}
+.root .App .page .task-element .edit-menu .block-buttons button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.root .App .page .task-element .edit-menu .block-buttons button img {
+  width: 14px;
+  height: 14px;
+}
+.root .App .page .task-element .edit-menu .block-buttons button:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .edit-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: rgba(7, 7, 7, 0.8901960784);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  position: fixed;
+  inset: 0;
+}
+.root .App .page .task-element .edit-container .edit-window {
+  padding-bottom: 10px;
+  max-width: 360px;
+  width: 100vw;
+  height: 451px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #1B1A17;
+}
+.root .App .page .task-element .edit-container .edit-window .edit-title {
+  max-width: 330px;
+  width: 100vw;
+  height: 32px;
+  color: #F0E3CA;
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 400;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  outline: none;
+}
+.root .App .page .task-element .edit-container .edit-window .edit-title:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .edit-container .edit-window .edit-about {
+  max-width: 330px;
+  width: 100vw;
+  height: 343px;
+  color: #F0E3CA;
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 400;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  outline: none;
+}
+.root .App .page .task-element .edit-container .edit-window .edit-about:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .edit-container .edit-window .buttons {
+  max-width: 140px;
+  width: 100vw;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.root .App .page .task-element .edit-container .edit-window .buttons button {
+  width: 64px;
+  height: 24px;
+  font-size: 10px;
+  font-family: "Roboto";
+  font-weight: 400;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  color: #D9D9D9;
+  cursor: pointer;
+}
+.root .App .page .task-element .edit-container .edit-window .buttons button:focus {
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .edit-container-content {
+  max-width: 360px;
+  width: 100vw;
+  height: 451px;
+  border-radius: 8px;
+  background-color: #1B1A17;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=style.css.map */
