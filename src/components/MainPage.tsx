@@ -4,30 +4,61 @@ import Task from './Task';
 import DeleteTask from './deleteTask.tsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, updateTask, reorderTasks } from './redux/taskSlice';
-import { RootState } from './redux/store'; 
+import { RootState } from './redux/store';
 
 interface TaskType {
-    id: string;
+    id: number;
     title: string;
     about: string;
+    isFavorite: boolean;
 }
 
 function MainPage() {
-    const tasks = useSelector((state: RootState) => state.tasks.tasks) as TaskType[]; 
-    const dispatch = useDispatch(); 
-    
-    const [deleteIndex, setDeleteIndex] = useState<number | null>(null); 
-    const [showDelete, setShowDelete] = useState<boolean>(false); 
+    const tasks = useSelector((state: RootState) => state.tasks.tasks) as TaskType[];
+    const lastId = useSelector((state: RootState) => state.tasks.lastId);    const dispatch = useDispatch();
+    const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
+    const [showDelete, setShowDelete] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     function handleEditTask(index: number, updatedTask: TaskType) {
         dispatch(updateTask({ index, task: updatedTask }));
     }
 
+    const markAsFavorite = (index: number) => {
+        const currentTask = tasks[index];
+        const updatedTask = {
+            ...currentTask,
+            isFavorite: !currentTask.isFavorite,
+        };
+    
+        const favoriteCount = tasks.filter((task) => task.isFavorite).length;
+    
+        if (updatedTask.isFavorite && favoriteCount >= 3) {
+            setErrorMessage("Вы не можете добавить больше 3 избранных задач.");
+            return;
+        } else {
+            setErrorMessage(null);
+        }
+    
+        const updatedTasks = [...tasks];
+    
+        updatedTasks.splice(index, 1);
+        if (updatedTask.isFavorite) {
+            updatedTasks.unshift(updatedTask); 
+        } else {
+            updatedTasks.push(updatedTask);
+        }
+    
+        dispatch(reorderTasks(updatedTasks));
+        dispatch(updateTask({task: updatedTask, index}));
+    };
+    
     function handleAddTask(title: string, about: string) {
         const newTask: TaskType = {
-            id: Date.now().toString(),
+            id: lastId + 1, 
             title,
             about,
+            isFavorite: false,
         };
         dispatch(addTask(newTask));
     }
@@ -58,19 +89,22 @@ function MainPage() {
     function handleDrop(e: React.DragEvent<HTMLDivElement>) {
         e.preventDefault();
         const draggedIndex = e.dataTransfer.getData("text/plain");
-        
-        const dropElement = e.target as HTMLElement;  
+
+        const dropElement = e.target as HTMLElement;
         const closestElement = dropElement.closest('.task-element') as HTMLElement | null;
-    
+
         const dropIndex = closestElement ? closestElement.dataset.index : undefined;
-    
+
         if (dropIndex !== undefined && draggedIndex !== dropIndex) {
-            dispatch(reorderTasks({ oldIndex: Number(draggedIndex), newIndex: Number(dropIndex) }));
+            const draggedTask = tasks[Number(draggedIndex)];
+            if (!draggedTask.isFavorite) {
+                dispatch(reorderTasks({ oldIndex: Number(draggedIndex), newIndex: Number(dropIndex) }));
+            }
         }
     }
 
     function allowDrop(e: React.DragEvent<HTMLDivElement>) {
-        e.preventDefault();  
+        e.preventDefault();
     }
 
     return (
@@ -80,12 +114,13 @@ function MainPage() {
                 <div className="task-list" onDragOver={allowDrop} onDrop={handleDrop}>
                     {tasks.map((task, index) => (
                         <Task 
-                            key={`${task.id}-${index}`}
-                            index={index} 
-                            task={task} 
-                            deleteTasks={confirmDeleteTask} 
-                            editTask={handleEditTask} 
+                            key={`${task.id}-${index}`} 
+                            index={index}
+                            task={task}
+                            deleteTasks={confirmDeleteTask}
+                            editTask={handleEditTask}
                             handleDragStart={handleDragStart} 
+                            markAsFavorite={markAsFavorite}
                         />
                     ))}
                 </div>
@@ -102,6 +137,7 @@ function MainPage() {
                     onCancel={handleDeleteCancelled}
                 />
             )}
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
         </div>
     );
 }

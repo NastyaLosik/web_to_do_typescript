@@ -239,7 +239,15 @@
   font-family: "Roboto";
   font-size: 14px;
 }
-.root .App .page .task-element .task-container .delete-button {
+.root .App .page .task-element .task-container .buttons {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.root .App .page .task-element .task-container .buttons .delete-button {
+  width: 45px;
+  height: 45px;
   padding: 8px 12px;
   border: 1px solid #A35709;
   background-color: #1B1A17;
@@ -249,7 +257,27 @@
   font-size: 16px;
   box-sizing: border-box;
 }
-.root .App .page .task-element .task-container .delete-button:focus {
+.root .App .page .task-element .task-container .buttons .delete-button:focus {
+  color: #FF8303;
+  border: 1px solid #FF8303;
+  background-color: #1F1E1B;
+}
+.root .App .page .task-element .task-container .buttons .save-button {
+  width: 45px;
+  height: 45px;
+  padding: 8px 12px;
+  border: 1px solid #A35709;
+  background-color: #1B1A17;
+  color: #A35709;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.root .App .page .task-element .task-container .buttons .save-button:focus {
   color: #FF8303;
   border: 1px solid #FF8303;
   background-color: #1F1E1B;

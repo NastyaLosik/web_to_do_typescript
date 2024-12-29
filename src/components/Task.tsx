@@ -5,6 +5,7 @@ import Edit from './Edit';
 interface TaskType {
     title: string;
     about: string;
+    isFavorite: boolean;
 }
 
 interface TaskProps {
@@ -13,9 +14,10 @@ interface TaskProps {
     deleteTasks: (index: number) => void;
     editTask: (index: number, updatedTask: TaskType) => void;
     handleDragStart: (e: React.DragEvent<HTMLDivElement>, index: number) => void;
+    markAsFavorite: (index: number) => void; 
 }
 
-const Task: React.FC<TaskProps> = ({ task, index, deleteTasks, editTask, handleDragStart }) => {
+const Task: React.FC<TaskProps> = ({ task, index, deleteTasks, editTask, handleDragStart, markAsFavorite }) => {
     const [isEditMenuVisible, setEditMenuVisible] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [editedTitle, setEditedTitle] = useState<string>(task?.title || ''); 
@@ -43,7 +45,8 @@ const Task: React.FC<TaskProps> = ({ task, index, deleteTasks, editTask, handleD
     const save = () => {
         const updatedTask: TaskType = {
             title: editedTitle,
-            about: editedAbout
+            about: editedAbout,
+            isFavorite: task.isFavorite
         };
         editTask(index, updatedTask); 
         setShowEdit(false);
@@ -53,11 +56,16 @@ const Task: React.FC<TaskProps> = ({ task, index, deleteTasks, editTask, handleD
         setShowEdit(false); 
     };
 
+    const handleFavoriteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        markAsFavorite(index); 
+    };
+
     return (
         <div 
-            className="task-element" 
+            className={`task-element ${task.isFavorite ? 'favorite' : ''}`}
             onClick={toggleEditMenu} 
-            draggable 
+            draggable={!task.isFavorite} 
             onDragStart={(e) => handleDragStart(e, index)} 
             data-index={index}
         >
@@ -66,15 +74,24 @@ const Task: React.FC<TaskProps> = ({ task, index, deleteTasks, editTask, handleD
                     <h3>{task?.title || 'Untitled Task'}</h3>
                     <p>{task?.about || 'No details provided.'}</p>
                 </div>
-                <button className="delete-button" onClick={handleDeleteClick}>x</button>
+                <div className='buttons'>
+                    <button className="delete-button" onClick={handleDeleteClick}>x</button>
+                    <button className='save-button' onClick={handleFavoriteClick}>
+                        <img src={task.isFavorite ? './src/icons/whiteHeart.png' : './src/icons/Heart.png'} alt="Favorite" />
+                    </button>
+                </div>
             </div>
 
             {isEditMenuVisible && (
                 <div className="edit-menu" style={{ display: 'flex' }}>
                     <div className="block-buttons">
-                        <button className="button-share" onClick={Share}><img src="./src/icons/Share.svg" alt="Share" /></button>
+                        <button className="button-share" onClick={Share}>
+                            <img src="./src/icons/Share.svg" alt="Share" />
+                        </button>
                         <button className="button-i">i</button>
-                        <button className="button-edit" onClick={handleEditClick}><img src="./src/icons/edit.svg" alt="Edit" /></button>
+                        <button className="button-edit" onClick={handleEditClick}>
+                            <img src="./src/icons/edit.svg" alt="Edit" />
+                        </button>
                     </div>
                 </div>
             )}
